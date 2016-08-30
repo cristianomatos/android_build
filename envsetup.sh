@@ -562,7 +562,7 @@ function breakfast()
     target=$1
     unset LUNCH_MENU_CHOICES
     add_lunch_combo full-eng
-    for f in `/bin/ls vendor/pa/vendorsetup.sh 2> /dev/null`
+    for f in `/bin/ls vendor/cr/vendorsetup.sh 2> /dev/null`
         do
             echo "including $f"
             . $f
@@ -578,8 +578,8 @@ function breakfast()
             # A buildtype was specified, assume a full device name
             lunch $target
         else
-            # This is probably just the PA model name
-            lunch pa_$target-userdebug
+            # This is probably just the CR model name
+            lunch cr_$target-userdebug
         fi
     fi
     return $?
@@ -625,7 +625,7 @@ function lunch()
     export TARGET_BUILD_APPS=
 
     local product=$(echo -n $selection | sed -e "s/-.*$//")
-    if [[ $product == pa_* ]]
+    if [[ $product == cr_* ]]
     then
         pushd $(gettop) > /dev/null
         build/tools/roomservice.py $product
